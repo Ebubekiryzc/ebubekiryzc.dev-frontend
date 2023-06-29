@@ -1,0 +1,52 @@
+/* vars */
+:root {
+    --color-transition: 1s all ease;
+
+    /* sizes */
+    --small: 576px;
+    --medium: 768px;
+    --large: 992px;
+    --x-large: 1366px;
+}
+
+:root,
+.dark {
+    --background-color: #181A1B;
+    --text-color: #eeefff;
+    --primary-color: #4871E4;
+    --link-color: #efefef;
+    --text-color-opacity-50: #b2aba150;
+}
+
+.light {
+    --background-color: #ffffff;
+    --text-color: #333;
+    --primary-color: #6C9EFC;
+    --link-color: #333;
+    --text-color-opacity-50: #33333350;
+}
+
+/* general css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.theme {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: var(--color-transition);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: var(--x-large);
+    margin: 0 auto;
+}
