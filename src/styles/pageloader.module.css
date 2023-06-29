@@ -1,0 +1,239 @@
+.content {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #181A1B;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fingers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.finger {
+    width: 80px;
+    height: 200px;
+    background: white;
+    border-radius: 5mm 5mm 10mm 10mm;
+    margin: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    animation: move 1.5s ease infinite var(--delay);
+}
+
+.finger:nth-child(1) {
+    --delay: 200ms;
+}
+
+.finger:nth-child(2) {
+    --delay: 400ms;
+    height: 230px;
+}
+
+.finger:nth-child(3) {
+    --delay: 600ms;
+    height: 260px;
+}
+
+.finger:nth-child(4) {
+    --delay: 800ms;
+    height: 240px;
+}
+
+.marks {
+    height: 100%;
+    animation: move 1.5s ease infinite var(--delay);
+}
+
+.mark {
+    width: 50px;
+    background: #181A1B;
+    height: 10px;
+    margin: 7px auto;
+}
+
+.nail {
+    width: 50px;
+    height: 60px;
+    background: #181A1B;
+    margin: 10px auto;
+    border-radius: 10mm 10mm 5mm 5mm;
+}
+
+.thumb {
+    width: 120px;
+    height: 80px;
+    border-radius: 4mm 4mm 15mm 5mm;
+    background: white;
+    animation: none;
+    display: flex;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+}
+
+.keys {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.key {
+    width: 80px;
+    height: 70px;
+    background: white;
+    color: #181A1B;
+    border-radius: 5mm 5mm 10mm 10mm;
+    font-weight: 700;
+    margin: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation: move 1.5s ease infinite var(--delay);
+}
+
+.key:nth-child(1) {
+    --delay: 200ms;
+}
+
+.key:nth-child(2) {
+    --delay: 400ms;
+}
+
+.key:nth-child(3) {
+    --delay: 600ms;
+}
+
+.key:nth-child(4) {
+    --delay: 800ms;
+}
+
+.key:nth-child(5) {
+    width: 120px;
+    background-color: transparent;
+    animation: none;
+}
+
+.keyHolder {
+    width: 100%;
+    height: 20px;
+    margin-top: 1rem;
+    position: relative;
+    background-color: white;
+}
+
+@keyframes move {
+
+    0%,
+    45% {
+        transform: translateY(0);
+    }
+
+    30% {
+        transform: translateY(20px);
+    }
+}
+
+/* responsiveness */
+@media (max-width: 1366px) {
+    .finger {
+        height: 150px;
+        width: 60px;
+    }
+
+    .finger:nth-child(2) {
+        height: 172.5px;
+    }
+
+    .finger:nth-child(3) {
+        height: 195px;
+    }
+
+    .finger:nth-child(4) {
+        height: 180px;
+    }
+
+    .thumb {
+        width: 90px;
+        height: 60px;
+    }
+
+    .mark {
+        width: 45px;
+        height: 6px;
+    }
+
+    .nail {
+        width: 45px;
+        height: 50px;
+    }
+
+    .key {
+        width: 60px;
+        height: 55px;
+    }
+
+    .key:nth-child(5) {
+        width: 90px;
+        height: 55px;
+    }
+}
+
+@media (max-width: 768px) {
+    .finger {
+        height: 100px;
+        width: 40px;
+    }
+
+    .finger:nth-child(2) {
+        height: 115px;
+    }
+
+    .finger:nth-child(3) {
+        height: 130px;
+    }
+
+    .finger:nth-child(4) {
+        height: 120px;
+    }
+
+    .thumb {
+        width: 60px;
+        height: 40px;
+    }
+
+    .mark {
+        width: 33px;
+        height: 3px;
+    }
+
+    .nail {
+        width: 33px;
+        height: 40px;
+    }
+
+    .key {
+        width: 40px;
+        height: 35px;
+    }
+
+    .key:nth-child(5) {
+        width: 60px;
+        height: 35px;
+    }
+
+    .keyHolder {
+        height: 10px;
+    }
+}
