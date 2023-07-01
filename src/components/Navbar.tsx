@@ -1,9 +1,10 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Link from "next/link";
 import DarkModeToggle from "./DarkModeToggle";
 import styles from "@/styles/navbar.module.css";
+import { useOnClickOutside } from "@/hooks/use-on-click-outside";
 
 const links = [
   {
@@ -31,6 +32,7 @@ const links = [
 
 const Navbar: FC = () => {
   const [opened, setOpened] = useState(false);
+  const [clickedNavbarBars, setClickedNavbarBars] = useState(false);
 
   const toggleDropdown = () => {
     setOpened((prev) => !prev);
@@ -40,6 +42,16 @@ const Navbar: FC = () => {
     if (opened) return [styles.dropdownMenu, styles.open].join(" ");
     else return styles.dropdownMenu;
   };
+
+  const navbarDropdown = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(navbarDropdown, () => {
+    if (clickedNavbarBars) {
+      setClickedNavbarBars(false);
+      return;
+    }
+    if (opened) toggleDropdown();
+  });
 
   return (
     <header id={styles.header} className="container">
@@ -57,12 +69,18 @@ const Navbar: FC = () => {
             ))}
           </div>
         </div>
-        <div className={styles.navbarToggle} onClick={() => toggleDropdown()}>
+        <div
+          className={styles.navbarToggle}
+          onClick={() => {
+            setClickedNavbarBars(true);
+            toggleDropdown();
+          }}
+        >
           {opened ? <FaTimes /> : <FaBars />}
         </div>
       </div>
 
-      <div className={getDropdownMenuStyle()}>
+      <div ref={navbarDropdown} className={getDropdownMenuStyle()}>
         <div className={styles.links}>
           {links.map((link) => (
             <Link
