@@ -1,0 +1,44 @@
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+}
+
+.sectionTitle {
+    margin: 5rem auto 0 auto;
+    color: var(--background-color);
+    letter-spacing: 2px;
+    white-space: break-spaces;
+    text-transform: uppercase;
+    font-size: 5em;
+    opacity: 0.75;
+    text-align: center;
+}
+
+
+@media (max-width: 768px) {
+    .sectionTitle {
+        font-size: 4em;
+        margin-left: auto;
+    }
+
+    .backgroundAnimations {
+        visibility: hidden;
+    }
+}
+
+@media (max-width: 576px) {
+    .sectionTitle {
+        font-size: 2.5em;
+        text-align: left;
+        margin-left: 1rem;
+    }
+}
+
+@media (max-width: 300px) {
+    .sectionTitle {
+        font-size: 2em;
+        text-align: left;
+        margin-left: 0;
+    }
+}
