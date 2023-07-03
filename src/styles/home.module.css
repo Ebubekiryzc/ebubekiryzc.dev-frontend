@@ -39,7 +39,7 @@
 }
 
 .resumeButton {
-    margin-top: 3rem;
+    margin: 3rem 0;
 }
 
 .imgContainer {
@@ -56,10 +56,10 @@
     object-fit: contain;
 }
 
-.homeSection2 {
+.professionalExperiences {
+    position: relative;
     background-color: var(--primary-color);
-    height: 100vh;
-    border-radius: 0 0 15rem 0;
+    min-height: 100vh;
 }
 
 .highLighted {
@@ -68,6 +68,11 @@
 
 /* responsiveness */
 @media (max-width: 992px) {
+
+    .landingSection {
+        min-height: 100vh;
+    }
+
     .landingContainer {
         gap: 0;
         display: flex;
