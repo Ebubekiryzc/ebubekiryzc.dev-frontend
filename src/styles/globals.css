@@ -8,6 +8,12 @@
     --medium: 768px;
     --large: 992px;
     --x-large: 1366px;
+
+    /* colors */
+    --dark-blue-color: linear-gradient(#003554 0 0);
+    --orange-color: #fcba04;
+    --red-color: #f93943;
+    --green-color: #A2FAA3;
 }
 
 :root,
@@ -54,6 +60,11 @@ body {
 .container {
     max-width: var(--x-large);
     margin: 0 auto;
+}
+
+.effect {
+    position: absolute;
+    z-index: 0;
 }
 
 /* responsiveness */
