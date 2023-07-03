@@ -1,10 +1,12 @@
 "use client";
 import BlobImage from "@/components/BlobImage";
 import Button from "@/components/Button";
+import ComponentLoader from "@/components/ComponentLoader";
 import PageLoader from "@/components/PageLoader";
+import ProfessionalExperiences from "@/components/ProfessionalExperiences";
 import useDeveloperService from "@/services/developerService";
 import styles from "@/styles/home.module.css";
-import { FC } from "react";
+import { FC, Suspense } from "react";
 
 interface PageProps {}
 
@@ -42,16 +44,24 @@ const Page: FC<PageProps> = ({}) => {
                 className={styles.resumeButton}
                 text="CV Görüntüle"
                 onClick={() => {
+                  // TODO: Change method
                   console.log("Selam");
                 }}
               />
             </div>
             <div className={styles.imgContainer}>
-              <BlobImage animationDuration="30000ms" imageUrl={developer.profile_photo} />
+              <BlobImage
+                animationDuration="30000ms"
+                imageUrl={developer.profile_photo}
+              />
             </div>
           </div>
         </section>
-        <div className={styles.homeSection2}></div>
+        <section className={styles.professionalExperiences}>
+          <Suspense fallback={<ComponentLoader />}>
+            <ProfessionalExperiences developerId={developer.id} />
+          </Suspense>
+        </section>
       </main>
     )
   );
