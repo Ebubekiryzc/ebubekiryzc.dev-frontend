@@ -1,0 +1,54 @@
+.spinEffect {
+    animation: spinAnimation 2.75s linear infinite;
+    opacity: 0.6;
+}
+
+.bounceEffect {
+    animation: bounceAnimation 4s linear infinite;
+    opacity: 0.6;
+}
+
+.pulseAndScaleEffect {
+    animation: pulseAndScaleAnimation 2s linear infinite;
+    opacity: 0.6;
+}
+
+
+@keyframes spinAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes bounceAnimation {
+
+    0%,
+    100% {
+        transform: translateY(-30px);
+    }
+
+    50% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes pulseAndScaleAnimation {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.7));
+    }
+
+    70% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.7));
+    }
+
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 3px rgba(150, 150, 150, 0.7));
+    }
+}
