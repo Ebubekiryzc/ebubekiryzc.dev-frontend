@@ -1,0 +1,45 @@
+.customLoader {
+    background:
+        var(--dark-blue-color),
+        var(--dark-blue-color),
+        var(--dark-blue-color),
+        var(--dark-blue-color),
+        var(--dark-blue-color),
+        var(--dark-blue-color),
+        var(--dark-blue-color),
+        var(--dark-blue-color),
+        var(--dark-blue-color);
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    animation:
+        componentLoaderScaleAnim 1s infinite,
+        componentLoaderSpinAnim 1s infinite;
+}
+
+@keyframes componentLoaderScaleAnim {
+
+    0%,
+    100% {
+        width: 45px;
+        height: 45px
+    }
+
+    35%,
+    65% {
+        width: 65px;
+        height: 65px
+    }
+}
+
+@keyframes componentLoaderSpinAnim {
+
+    0%,
+    40% {
+        background-position: 0 0, 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0, 50% 0, 50% 50%
+    }
+
+    60%,
+    100% {
+        background-position: 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0, 50% 0, 0 0, 50% 50%
+    }
+}
