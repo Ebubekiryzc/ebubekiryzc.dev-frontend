@@ -1,6 +1,7 @@
 import { ListResponseModel } from "@/models/base/listResponseModel";
 import { SingleResponseModel } from "@/models/base/singleResponseModel";
 import { Developer } from "@/models/developer";
+import { DeveloperProfessionalExperience } from "@/models/developerProfessionalExperience";
 import { useQuery } from "react-query";
 
 let controllerUrl = `${process.env.NEXT_PUBLIC_API_URL}/developers/api/developers`;
@@ -42,5 +43,29 @@ export default function useDeveloperService() {
     return getById(Number.parseInt(process.env.NEXT_PUBLIC_MAIN_DEV_ID!));
   };
 
-  return { getAll, getById, getMainDeveloper };
+  const getProfessionalExperiencesByDevId = (
+    id: number
+  ): ListResponseModel<DeveloperProfessionalExperience> => {
+    const { data, isFetching, isFetched } = useQuery(
+      ["getProfessionalExperiencesByDevId", id],
+      async () => {
+        const response = await fetch(
+          `${controllerUrl}/${id}/professional_experiences/`,
+          {
+            cache: "no-store",
+          }
+        );
+        return await response.json();
+      }
+    );
+
+    return { data, isFetching, isFetched };
+  };
+
+  return {
+    getAll,
+    getById,
+    getMainDeveloper,
+    getProfessionalExperiencesByDevId,
+  };
 }
