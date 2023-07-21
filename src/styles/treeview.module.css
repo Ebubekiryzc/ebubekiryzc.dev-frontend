@@ -1,0 +1,111 @@
+.parentNode>.skillInfo:first-child {
+    background-color: aliceblue;
+    border-radius: 30px;
+}
+
+.parentNode {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.treeNode {
+    opacity: 0;
+}
+
+.animate {
+    animation: leftToRight 0.5s linear forwards;
+    animation-delay: var(--animation-delay);
+}
+
+.parentNode>.skillInfo:first-child .skillName {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.skillInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    color: var(--text-color);
+}
+
+.skillInfo .linkContainer {
+    display: flex;
+    align-items: center;
+}
+
+.skillName {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.imageContainer {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    margin-right: 1rem;
+}
+
+.image {
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.progressBar {
+    width: 100px;
+    height: 10px;
+    background-color: var(--opposite-background-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progressBarFilled {
+    height: 100%;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+}
+
+.childList {
+    border-radius: 10px;
+    margin-left: 1rem;
+    margin-top: 0.25rem;
+    box-shadow: var(--box-shadow-type-1);
+}
+
+.tree {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5rem;
+}
+
+.circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--opposite-background-color);
+    margin-right: 1rem;
+}
+
+/* responsiveness */
+@media (max-width: 350px) {
+    .parentNode {
+        width: 250px;
+    }
+}
+
+/* animations */
+@keyframes leftToRight {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
