@@ -4,6 +4,7 @@ import Button from "@/components/Button";
 import ComponentLoader from "@/components/ComponentLoader";
 import PageLoader from "@/components/PageLoader";
 import ProfessionalExperiences from "@/components/ProfessionalExperiences";
+import Skills from "@/components/Skills";
 import useDeveloperService from "@/services/developerService";
 import styles from "@/styles/home.module.css";
 import { FC, Suspense } from "react";
@@ -60,6 +61,12 @@ const Page: FC<PageProps> = ({}) => {
         <section className={styles.professionalExperiences}>
           <Suspense fallback={<ComponentLoader />}>
             <ProfessionalExperiences developerId={developer.id} />
+            <div className={styles.triangle}></div>
+          </Suspense>
+        </section>
+        <section className={styles.skills}>
+          <Suspense fallback={<ComponentLoader />}>
+            <Skills developerId={developer.id} />
           </Suspense>
         </section>
       </main>
