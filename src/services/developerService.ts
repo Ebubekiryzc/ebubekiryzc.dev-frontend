@@ -2,6 +2,7 @@ import { ListResponseModel } from "@/models/base/listResponseModel";
 import { SingleResponseModel } from "@/models/base/singleResponseModel";
 import { Developer } from "@/models/developer";
 import { DeveloperProfessionalExperience } from "@/models/developerProfessionalExperience";
+import { DeveloperSkill } from "@/models/developerSkill";
 import { useQuery } from "react-query";
 
 let controllerUrl = `${process.env.NEXT_PUBLIC_API_URL}/developers/api/developers`;
@@ -25,12 +26,15 @@ export default function useDeveloperService() {
     };
   };
 
-  const getById = (id: number): SingleResponseModel<Developer> => {
+  const getById = (
+    id: number,
+    cachingMode: RequestCache
+  ): SingleResponseModel<Developer> => {
     const { data, isFetching, isFetched } = useQuery(
       ["getDeveloperById", id],
       async () => {
         const response = await fetch(`${controllerUrl}/${id}/`, {
-          cache: "no-store",
+          cache: cachingMode,
         });
         return await response.json();
       }
@@ -40,7 +44,10 @@ export default function useDeveloperService() {
   };
 
   const getMainDeveloper = (): SingleResponseModel<Developer> => {
-    return getById(Number.parseInt(process.env.NEXT_PUBLIC_MAIN_DEV_ID!));
+    return getById(
+      Number.parseInt(process.env.NEXT_PUBLIC_MAIN_DEV_ID!),
+      "default"
+    );
   };
 
   const getProfessionalExperiencesByDevId = (
@@ -62,10 +69,25 @@ export default function useDeveloperService() {
     return { data, isFetching, isFetched };
   };
 
+  const getSkillsByDevId = (id: number): ListResponseModel<DeveloperSkill> => {
+    const { data, isFetching, isFetched } = useQuery(
+      ["getSkillsByDevId", id],
+      async () => {
+        const response = await fetch(`${controllerUrl}/${id}/skills/`, {
+          cache: "no-store",
+        });
+        return await response.json();
+      }
+    );
+
+    return { data, isFetching, isFetched };
+  };
+
   return {
     getAll,
     getById,
     getMainDeveloper,
     getProfessionalExperiencesByDevId,
+    getSkillsByDevId,
   };
 }
