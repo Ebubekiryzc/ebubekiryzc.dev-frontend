@@ -150,7 +150,7 @@
         width: 100%;
     }
 
-    .timeline::after {
+    .timeline.animate::after {
         left: 31px;
     }
 
