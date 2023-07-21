@@ -1,5 +1,4 @@
 .buttonComponent {
-    transition: var(--color-transition);
     border: 1px solid transparent;
     padding: 1rem 2rem;
     background-color: var(--opposite-background-color);
