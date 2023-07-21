@@ -1,6 +1,6 @@
 /* vars */
 :root {
-    --color-transition: 1s all ease;
+    --transition-1s-all-ease: 1s all ease;
 
     /* sizes */
     --x-small: 300px;
@@ -14,6 +14,7 @@
     --orange-color: #fcba04;
     --red-color: #f93943;
     --green-color: #A2FAA3;
+
 }
 
 :root,
@@ -25,6 +26,8 @@
     --primary-color: #4871E4;
     --link-color: #efefef;
     --text-color-opacity-50: #b2aba150;
+    /* shadows */
+    --box-shadow-type-1: -5px 15px 17px -15px rgba(0, 0, 0, 0.75);
 }
 
 .light {
@@ -35,6 +38,8 @@
     --primary-color: #6C9EFC;
     --link-color: #333;
     --text-color-opacity-50: #33333350;
+    /* shadows */
+    --box-shadow-type-1: -5px 15px 17px -15px rgba(0, 0, 0, 0.1);
 }
 
 /* general css */
@@ -42,6 +47,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: var(--transition-1s-all-ease);
 }
 
 html,
@@ -53,7 +59,6 @@ body {
 .theme {
     background-color: var(--background-color);
     color: var(--text-color);
-    transition: var(--color-transition);
     min-height: 100vh;
 }
 
