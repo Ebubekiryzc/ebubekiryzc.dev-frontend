@@ -1,7 +1,14 @@
-#header {
+#navigationBarContent {
     position: relative;
     display: flex;
     justify-content: center;
+}
+
+#header.sticky {
+    position: fixed;
+    height: 60px;
+    width: 100%;
+    background-color: var(--background-color);
     z-index: 100;
 }
 
@@ -37,7 +44,6 @@
     border-radius: 3px;
     padding: 0.5rem;
     color: var(--link-color);
-    transition: var(--color-transition);
 }
 
 .nav .links a:hover {

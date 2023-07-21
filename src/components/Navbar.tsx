@@ -1,5 +1,5 @@
 "use client";
-import { FC, useRef, useState } from "react";
+import { FC, ReactElement, useEffect, useRef, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Link from "next/link";
 import DarkModeToggle from "./DarkModeToggle";
@@ -33,6 +33,7 @@ const links = [
 const Navbar: FC = () => {
   const [opened, setOpened] = useState(false);
   const [clickedNavbarBars, setClickedNavbarBars] = useState(false);
+  const nav = useRef<HTMLElement>(null);
 
   const toggleDropdown = () => {
     setOpened((prev) => !prev);
@@ -53,44 +54,63 @@ const Navbar: FC = () => {
     if (opened) toggleDropdown();
   });
 
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 60) {
+      nav.current!.classList.add(styles.sticky); // useRef ile erişin
+    } else {
+      if (nav.current!.classList.contains(styles.sticky)) {
+        nav.current!.classList.remove(styles.sticky); // useRef ile erişin
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", changeNavbarColor);
+    return () => {
+      window.removeEventListener("scroll", changeNavbarColor);
+    };
+  }, []);
+
   return (
-    <header id={styles.header} className="container">
-      <div className={styles.navbar}>
-        <div className={styles.logo}>
-          <Link href="#">.DEV</Link>
+    <header id={styles.header} ref={nav}>
+      <div id={styles.navigationBarContent} className="container">
+        <div className={styles.navbar}>
+          <div className={styles.logo}>
+            <Link href="#">.DEV</Link>
+          </div>
+          <div className={styles.nav}>
+            <DarkModeToggle />
+            <div className={styles.links}>
+              {links.map((link) => (
+                <Link key={link.id} href={link.url} className={styles.links}>
+                  {link.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div
+            className={styles.navbarToggle}
+            onClick={() => {
+              setClickedNavbarBars(true);
+              toggleDropdown();
+            }}
+          >
+            {opened ? <FaTimes /> : <FaBars />}
+          </div>
         </div>
-        <div className={styles.nav}>
-          <DarkModeToggle />
+
+        <div ref={navbarDropdown} className={getDropdownMenuStyle()}>
           <div className={styles.links}>
             {links.map((link) => (
-              <Link key={link.id} href={link.url} className={styles.links}>
+              <Link
+                key={link.id}
+                href={link.url}
+                onClick={() => toggleDropdown()}
+              >
                 {link.title}
               </Link>
             ))}
           </div>
-        </div>
-        <div
-          className={styles.navbarToggle}
-          onClick={() => {
-            setClickedNavbarBars(true);
-            toggleDropdown();
-          }}
-        >
-          {opened ? <FaTimes /> : <FaBars />}
-        </div>
-      </div>
-
-      <div ref={navbarDropdown} className={getDropdownMenuStyle()}>
-        <div className={styles.links}>
-          {links.map((link) => (
-            <Link
-              key={link.id}
-              href={link.url}
-              onClick={() => toggleDropdown()}
-            >
-              {link.title}
-            </Link>
-          ))}
         </div>
       </div>
     </header>
